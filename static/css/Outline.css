@@ -1,0 +1,70 @@
+#controlPanel{
+    width:20%;
+    height:80%;
+    float:left;
+    Margin:0px 0px 0px 0px;
+    padding: 0px;
+    /* overflow: hidden; */
+    border:3px red;
+    border-radius:25px;
+    border-style:dotted ;
+}
+#overviewCtrlPanel{
+    width: 95%;
+    height:32%;
+    border:3px red;
+    border-radius:25px;
+    border-style:dotted ;
+}
+#freSetCtrlPanel{
+    width: 95%;
+    height:32%;
+    border:3px red;
+    border-radius:25px;
+    border-style:dotted ;
+}
+#ruleCtrlPanel{
+    width: 95%;
+    height:32%;
+    border:3px red;
+    border-radius:25px;
+    border-style:dotted ;
+}
+#mainGraph{
+    width:78%;
+    height:80%;
+    float:left;
+}
+#overViewGraph{
+    width:49%;
+    height:70%;
+    float:left;
+    Margin:0px 0px 0px 0px;
+    padding: 0px;
+    /* overflow: hidden; */
+    border:3px red;
+    border-radius:25px;
+    border-style:dotted ;
+}
+#freSetGraph{
+    width:49%;
+    height:70%;
+    float:left;
+    Margin:0px 0px 0px 0px;
+    padding: 0px;
+    /* overflow: hidden; */
+    border:3px red;
+    border-radius:25px;
+    border-style:dotted ;
+}
+#ruleGraph{
+    width:100%;
+    height:30%;
+    float:left;
+    Margin:0px 0px 0px 0px;
+    padding: 0px;
+    /* overflow: hidden; */
+    border:3px red;
+    border-radius:25px;
+    border-style:dotted ;
+}

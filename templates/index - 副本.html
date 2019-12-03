@@ -1,0 +1,312 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width/4, initial-scale=1">
+  <title>S_ICS</title>
+
+  <link rel="stylesheet" href="/static/css/jquery-ui.css" type="text/css" />
+  <link rel="stylesheet" href="/static/css/dragtable-default.css" type="text/css" />
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/static/css/test.css">
+  <link rel="stylesheet" href="/static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="/static/css/interaxis.css" type="text/css" />
+
+  <script type="text/javascript" src="/static/lib/d3.v3.js"></script>
+  <script type="text/javascript" src="/static/lib/d3-color.js"></script>
+  <script type="text/javascript" src="/static/lib/d3-interpolate.js"></script>
+  <!-- <script type="text/javascript" src="/static/lib/numeric-1.2.6.js"></script> -->
+  <script type="text/javascript" src="/static/lib/d3-scale-chromatic.js"></script>
+  <script type="text/javascript" src="/static/lib/d3-jetpack.js"></script>
+
+  <script src='/static/js/staticData.js'></script>
+  <script src='/static/js/publicFunction.js'></script>
+  <script type="text/javascript" src="/static/js/FileSaver.js" charset="utf-8"></script>
+
+</head>
+
+<body onload="init()">
+  <!-- <body> -->
+  <div id="totalControlPanel">
+    <div id="classCtrlPanel">
+
+      <nav class="navbar navbar-default" role="navigation" id="classDropDown">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#test"
+              aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">切换导航</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">分类图</a>
+          </div>
+          <div class="collapse navbar-collapse" id="test">
+            <ul class="nav navbar-nav">
+              <li class="dropdown medthDeDim">
+                <a class="nav-link" data-toggle="dropdown">降维方法
+                  <b class="caret"></b></a>
+              </li>
+              <li class="dropdown vehicleType">
+                <a class="nav-link " data-toggle="dropdown">车辆类型
+                  <b class="caret"></b></a>
+              </li>
+              <!-- <li class="dropdown restoreModel">
+                    <a class="nav-link" data-toggle="dropdown">恢复模型
+                      <b class="caret"></b>
+                    </a>
+                  </li>  -->
+              <li class="dropdown markByUser">
+                <a class="dropdown-toggle " data-toggle="dropdown">标记操作
+                  <b class="caret"></b></a>
+              </li>
+              <li class="dropdown showMarkRes">
+                <a class="dropdown-toggle " data-toggle="dropdown">展示结果
+                  <b class="caret"></b></a>
+              </li>
+              <li><a href="#" onclick="refreshGraExpScatter()">刷新视图</a></li>
+              <li><a href="#" onclick="linkJs()">更新模型</a></li>
+
+              <!-- <li class="dropdown showSymbol">
+                    <a class="dropdown-toggle " data-toggle="dropdown">展示符号
+                      <b class="caret"></b></a>
+                  </li> -->
+              <!-- <li><a href="#">SVN</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    Java <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">jmeter</a></li>
+                    <li><a href="#">EJB</a></li>
+                    <li><a href="#">Jasper Report</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">分离的链接</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">另一个分离的链接</a></li>
+                  </ul>
+                </li> -->
+            </ul>
+
+          </div>
+          <!-- <div id="myexample">
+            <ul class="nav navbar-nav">
+              <li class="dropdown medthDeDim">
+                <a class="dropdown-toggle" data-toggle="dropdown">降维方法
+                  <b class="caret"></b></a>
+              </li>
+              <li class="dropdown vehicleType">
+                <a class="dropdown-toggle " data-toggle="dropdown">车辆类型
+                  <b class="caret"></b></a>
+              </li>
+              <li class="dropdown restoreModel">
+                <a class="dropdown-toggle" data-toggle="dropdown">恢复模型
+                  <b class="caret"></b>
+                </a>
+              </li>
+              <li class="dropdown markByUser">
+                <a class="dropdown-toggle " data-toggle="dropdown">标记操作
+                  <b class="caret"></b></a>
+              </li>
+              <li class="dropdown showMarkRes">
+                <a class="dropdown-toggle " data-toggle="dropdown">展示结果
+                  <b class="caret"></b></a>
+              </li>
+              <li class="dropdown showSymbol">
+                <a class="dropdown-toggle " data-toggle="dropdown">展示符号
+                  <b class="caret"></b></a>
+              </li>
+            </ul>
+          </div> -->
+        </div>
+      </nav>
+    </div>
+
+    <div id="recomCtrlPanel">
+      <nav class="navbar navbar-default" role="navigation" id="recomDropDown">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand">推荐图</a>
+          </div>
+          <div id="myexample">
+            <ul class="nav navbar-nav">
+              <li class="dropdown optionType">
+                <a class="dropdown-toggle" data-toggle="dropdown">操作类型
+                  <b class="caret"></b></a>
+              </li>
+              <li><a href="#" onclick="freshRecomGra()">刷新视图</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div id="rankCtrlPanel">
+      <nav class="navbar navbar-default" role="navigation" id="rankDropDown">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand">排序图</a>
+          </div>
+          <div id="myexample">
+            <ul class="nav navbar-nav">
+              <li class="dropdown optionType">
+                <a class="dropdown-toggle" data-toggle="dropdown">操作类型
+                  <b class="caret"></b></a>
+              </li>
+              <li class="dropdown vehicleType">
+                <a class="dropdown-toggle " data-toggle="dropdown">车辆类型
+                  <b class="caret"></b></a>
+              </li>
+              <li><a href="#" onclick="refreshGraExpRank()">刷新视图</a></li>
+              <li><a href="#" onclick="getSVMRes()">更新模型</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div id="publicCtrlPanel">
+      <nav class="navbar navbar-default" role="navigation" id="publicDropDown">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand">公共操作</a>
+          </div>
+          <div id="myexample">
+            <ul class="nav navbar-nav">
+              <li class="dropdown optionType">
+                <a class="dropdown-toggle" data-toggle="dropdown">操作类型
+                  <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <input type="file" id="files" style="display: none" onchange="fileImport();">
+                    <li><a href="#" >导入文件</a></li>
+                    <li><a href="#" onclick="exportClaResult()">导出文件</a></li>
+                </ul>
+              </li>
+              <li class="dropdown restoreModel">
+                <a class="dropdown-toggle " data-toggle="dropdown">恢复模型
+                  <b class="caret"></b></a>
+              </li>
+              <li class="vehicleType">
+                <form class="navbar-form navbar-left" role="search">
+                  <div class="form-group">
+                      <input type="text" class="form-control" placeholder="模型名" style="width: 90">
+                  </div>
+                  <button type="submit" class="btn btn-default">提交</button>
+              </form>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="temp">
+    </div>
+  </div>
+  <div id="totalGraph">
+    <div class="classifyGraph" width="750" id="totalClassifyGraph">
+      <div class="col-md-8" id="scplot">
+        <div id="classGraSvg">
+          <svg id="symbolSvg"></svg>
+          <!-- <div style="float:left">
+            <p value="8">不一致率：<span id="accuRate" type="text" name="fileName" style="width :50; color:red"></span></p>
+          </div> -->
+          <div id="btnXs">
+            <div id="datapanel" class="table"></div>
+          </div>
+          <!-- <div id="btnYc">
+            文件名: <input id="saveFile" type="text" name="fileName" style="width :50" />
+            <input type="submit" value="保存模型" onclick="saveModel()" /><br />
+            恢复模型: <select id="selectLoadFile" onchange="selectFile(value);"></select><br />
+          </div> -->
+        </div>
+      </div>
+      <div class="choice">
+        <!-- <label class="radio">在校生<input type="radio" name="radio" value="1" checked><i></i></label> -->
+        <label class="radio">高危车辆<input type="radio" value="3" name="radio">
+          <j></j>
+        </label><br />
+        <label class="radio">中危车辆<input type="radio" value="4" name="radio">
+          <k></k>
+        </label><br />
+        <label class="radio">低危车辆<input type="radio" value="2" name="radio"><i></i></label><br />
+        <label class="radio">未分类车辆<input type="radio" value="2" name="radio"><s></s></label><br />
+      </div>
+      <!-- <div class="buttons">
+        <input name="updateButton" class="btn btn-primary" type="button" value="更新分类模型" onclick="linkJs()" />
+        <button type="button" class="btn btn-primary" onclick="refreshGraExpScatter()">刷新视图</button>
+        <input type="button" class="btn btn-primary" id="fileImport" value="导入文件" />
+        <input type="button" class="btn btn-primary" id="export" value="导出结果" />
+      </div> -->
+      <!-- <div class="col-lg-6">
+          <div class="input-group">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button" onclick="saveModel()">
+                保存现场
+              </button>
+            </span>
+            <input type="text" class="form-control" id="saveFile" name="fileName"style="width :70">
+          </div>
+      </div><br> -->
+    </div>
+    <div class="rankGraph" id="totalRankGraph">
+      <div id="tablePanel"></div>
+      <!-- <div id="controlPanel"> -->
+      <!-- <div id = "rankButton">
+          <input name="updateButton" class="btn btn-primary" type="button" value="更新排序模型" onclick="getSVMRes()" />
+          <button type="button" class="btn btn-primary" onclick="refreshGraExpRank()">刷新视图</button>
+        </div>
+        <div id = "recomButton">
+          <button type="button" class="btn btn-primary" onclick="freshRecomGra()">刷新视图</button>
+        </div> -->
+
+
+
+
+      <!-- <button type="button" onclick="getSVMRes()" style="position: absolute;left:10px;top:50px;">更新排序模型
+        </button>
+        <button type="button" onclick="refreshGraExpRank()" style="position: absolute;left:120px;top:50px;">刷新视图
+        </button> -->
+      <!-- </div> -->
+    </div>
+    <div class="modelGraph" id="totalModelGraph">
+      <div id="recomTablePanel"></div>
+      <div id="recomDis">
+        <!-- <svg style="width :100%"></svg> -->
+      </div>
+      <!-- <div id="recomRecomRedim">
+        <svg style="width :100%"></svg>
+      </div> -->
+      
+
+      <!-- <button type="button" onclick="freshRecomGra()" style="position: absolute;left:1500px;top:570px;">刷新视图
+      </button> -->
+    </div>
+  </div>
+
+  <!-- <script src="https://d3js.org/d3-selection.v1.min.js"></script> -->
+  <script type="text/javascript" src="/static/lib/d3.layout.cloud.js"></script>
+
+  <script src='/static/lib/jquery-1.11.3.min.js'></script>
+
+  <script type="text/javascript" src="/static/lib/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript" src="/static/lib/jqueryUI/jquery-ui.js"></script>
+  <script src='/static/lib/jquery.dragtable.js'></script>
+  <script type="text/javascript" src="/static/lib/ial_new.js"></script>
+
+  <script src='/static/js/scatter-plot.js'></script>
+  <script src='/static/js/main.js'></script>
+  <script src='/static/js/podiumData.js'></script>
+  <script src='/static/js/test.js'></script>
+  <script src='/static/js/recomData.js'></script>
+  <script src='/static/js/recommend.js'></script>
+  <!-- <script src='/static/js/recomRedimData.js'></script>
+  <script src='/static/js/recomRedim.js'></script> -->
+  <script src='/static/js/recomDisData.js'></script>
+  <script src='/static/js/recomDis.js'></script>
+</body>
+
+</html>

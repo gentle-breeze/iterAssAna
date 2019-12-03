@@ -1,0 +1,102 @@
+::-webkit-scrollbar {
+    width: 5px;
+    /* for vertical scrollbars */
+    height: 5px;
+    /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+}
+body {
+    overflow: hidden;
+    /* overflow-x: hidden; */
+    /* overflow-y: scroll;  */
+    background-color: #e0e0e0;
+    /* z-index:-1; */
+}
+/* #titlePanel {
+    width: 100%;
+    width: 20%;
+    display: block;
+    position: relative;
+    z-index: 20;
+    background-color: #fff;
+} */
+#tablePanel {
+    width: 100%;
+    /* height: 100vh; */
+    height: 100%;
+    /* float: left; */
+    /* background-color: #fff; */
+    /* background-color: #e0e0e0; */
+    color: #555;
+    font-size:0.8em;
+}
+#tableId {
+    float:left;
+    border: 2px #fff solid;
+    font: 12px sans-serif;
+    /* overflow-y: scroll; */
+
+    /* max-height: 80%; */
+    display: block;
+    /* overflow: scroll; */
+}
+#tableId thead {
+    border-bottom: 2px solid #dddddd;
+    max-width: 400;
+    overflow: scroll;
+}
+/* #recomTableId tbody{
+    max-width: 100%;
+    max-height: 500;
+    display: block;
+    overflow: scroll;
+} */
+#tableId tbody{
+    /* max-width: 100%; */
+    /* max-height: 98%; */
+    display: block;
+    overflow: scroll; 
+    max-height: 430;
+}
+#tableId td {
+    padding-top: .5em;
+    padding-bottom: .5em;
+    padding-left: .5em;
+    padding-right: .5em;
+}
+
+#tableId th {
+    overflow: hidden;
+    padding: 1px;
+    height: 15px;
+    border: 1px solid white;
+    width: 100px;
+}
+#tableId td {
+    /* overflow: hidden; */
+    padding: 1px;
+    height: 15px;
+    border: 1px solid white;
+    width: 100px;
+}
+#tableId tr {
+    position: relative;
+    height: 1px;
+    border: 5px solid white;
+    /* overflow: hidden; */
+}
+#controlPanel{
+    /* position: absolute;left:750px;top:500px; */
+    /* width:100; */
+    padding: 30px;
+    float: left;
+    /* clear:left */
+    /* display: block; */
+}
