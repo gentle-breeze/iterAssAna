@@ -32,7 +32,7 @@
     "d3-color": "1"
   },
   "devDependencies": {
-    "eslint": "3",
+    "eslint": "6",
     "package-preamble": "0.1",
     "rollup": "0.41",
     "tape": "4",
