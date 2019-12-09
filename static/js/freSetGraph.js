@@ -170,7 +170,7 @@ freSetView = function(data = null){
                         return color("overall");
                         // return color(0);
                     })
-                    .attr("fill-opacity",0.5)
+                    .attr("fill-opacity",0.2)
                     .attr("transform","translate(" + padding["left"] + ","
                                 + padding["top"] + ")");
         overallRects.exit().remove();
@@ -272,6 +272,7 @@ freSetView = function(data = null){
                 .attr("fill",function(d,i){
                     return color(d["WF_Name"]);
                 })
+                .attr("fill-opacity",0.5)
                 .on('mouseover', function (d, i) {
                     return tooltip.style('visibility', 'visible').text(d["interval"]);
                 })

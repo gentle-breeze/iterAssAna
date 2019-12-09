@@ -7,6 +7,8 @@ import numpy as np
 def init(request):
     WF_SG_RES = np.load('.\\static\\data\\WF_SG_RES_TEST.npy', allow_pickle=True).item()
     freSetRes = np.load(".\\static\\data\\assAnaly_TEST.npy",allow_pickle=True).tolist()
+    # WF_SG_RES = np.load('.\\static\\data\\WF_SG_RES.npy', allow_pickle=True).item()
+    # freSetRes = np.load(".\\static\\data\\assAnaly.npy",allow_pickle=True).tolist()
     staticData.set_value("src_records",WF_SG_RES)
     staticData.set_value("src_new_records",WF_SG_RES)
     staticData.set_value("freSet",freSetRes)

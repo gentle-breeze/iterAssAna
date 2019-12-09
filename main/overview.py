@@ -115,7 +115,7 @@ def getNewFreSet(data):
             # grain[WF_key].append((list_interval[index],list_interval[index+1]))
             diff_WF_intervals[key].append(the_grain)
         the_num_dis = num_dis[WF_key]
-        res_recom = recomputeSet.recomputeSet(diff_WF_intervals[key], the_num_dis, 0.2)
+        res_recom = recomputeSet.recomputeSet(diff_WF_intervals[key], the_num_dis, 0.05)
         list_interval = res_recom.inter_res
         # list_interval = recomputeSet(diff_WF_intervals[key], WF_key)
         grain[WF_key] = []

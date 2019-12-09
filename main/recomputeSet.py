@@ -12,6 +12,7 @@ class recomputeSet():
         self.set_inter = self.turnInter2Set(src_inter_list)
         self.set_inter = self.getEndPointList(self.set_inter)
         self.set_inter.sort(key=cmp_to_key(cmp2))
+        print("不相交的区间为:",self.set_inter)
         self.inter_res = None
         self.getResList()
 # 计算端点值及其重合度
@@ -84,41 +85,60 @@ class recomputeSet():
         while(True):
             print(srcList)
             index,minDistance = self.judgeList(srcList)
+            print("minDistance is:", minDistance)
             if(minDistance>=threshold):
                 break
             srcList = self.mergeList(srcList,index)
         self.set_inter = srcList
         self.inter_res = self.turnSet2Inter()
-        
-    def mergeList(self, srcList, index):
-        resSet = set()
-        num = -1
-        res = None
-        insertIndex = -1
-        delIndex = -1
-        if(len(srcList) <= 1):
-            return srcList
-        if(index==0):
-            resSet = srcList[0][0] | srcList[1][0]
-            num = (srcList[0][1] + srcList[1][1])/2
-            insertIndex = 0
-        elif(index == len(srcList)-1):
-            resSet = srcList[index-1][0] | srcList[index][0]
-            num = (srcList[index-1][1] + srcList[index][1])/2
-            insertIndex = index-1
+    def computeOverlap(self, srcList, index):
+        length_list = len(srcList)
+        res = index
+        if(index == 0):
+            res += 1
+        elif(index == length_list-1):
+            res -= 1
         else:
-            if(srcList[index-1][1]>srcList[index+1][1]):
-                resSet = srcList[index-1][0] | srcList[index][0]
-                num = (srcList[index-1][1] + srcList[index][1])/2
-                insertIndex = index-1
-            else:
-                resSet =srcList[index+1][0] | srcList[index][0]
-                num = (srcList[index+1][1] + srcList[index][1])/2
-                insertIndex = index
-        print(insertIndex,(resSet,num))
-        del srcList[insertIndex]
-        del srcList[insertIndex]
-        srcList.insert(insertIndex,(resSet,num))
+            res += self.computeOverlapWith3Set(srcList[index], srcList[index-1],srcList[index+1])
+        return res
+    # 根据三个集合 计算相应的相关度
+    def computeOverlapWith3Set(self, AND, SUB1, SUB2):
+        srclist = self.src_inter_list
+        set_AND = AND[0]
+        set_SUB1 = SUB1[0]
+        set_SUB2 = SUB2[0]
+        set1 = set_AND | set_SUB1
+        set2 = set_AND | set_SUB2
+        # print(AND,SUB1,SUB2)
+        # print(set2)
+        inter1 = (min(set1), max(set1))
+        inter2 = (min(set2), max(set2))
+        num1 = 0
+        num2 = 0
+        res = 0
+        for record in srclist:
+            min_record = record[0]
+            max_record = record[1]
+            if((min_record <= inter1[0]) and (max_record >= inter1[1])):
+                num1 += 1
+            if((min_record <= inter2[0]) and (max_record >= inter2[1])):
+                num2 += 1
+        if(num1>=num2):
+            res = -1
+        else:
+            res = 1
+        print("与两端的相似度：", num1, num2)
+        return res
+    def mergeList(self, srcList, index):
+        new_index = self.computeOverlap(srcList, index)
+        min_index = min([index, new_index])
+        max_index = max([index, new_index])
+        res_set = srcList[index][0] | srcList[new_index][0]
+        num = (srcList[index][1] + srcList[new_index][1]) / 2
+        del srcList[min_index]
+        del srcList[min_index]
+        srcList.insert(min_index,(res_set,num))
+        print("合并之后：",srcList)
         return srcList
     def judgeList(self, srcList):
         minDistance = 10000000
